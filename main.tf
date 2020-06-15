@@ -28,7 +28,14 @@ resource "aws_instance" "default" {
 
 # Create Security Group for EC2
 resource "aws_security_group" "default" {
-  name = "terraform-22-80-sg"
+  name = "terraform-default-sg"
+
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
   ingress {
     from_port   = 22
@@ -36,5 +43,5 @@ resource "aws_security_group" "default" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
-  
+
 }
